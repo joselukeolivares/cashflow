@@ -6,10 +6,10 @@
     <template #resume>
         <Resume :label="'Ahorro Total'" :amount="amount" :totalAmount="1234567890">
             <template #graphic>
-                graphic
+              <GraphicV :amounts="amounts"></GraphicV>
             </template>
             <template #action>
-                action
+               <ActionV></ActionV>
             </template>
         </Resume>
     </template>
@@ -24,13 +24,15 @@ import HeaderV from './HeaderV.vue';
 import LayoutV from './LayoutV.vue';
 import Resume from './Resume/Index.vue'
 import Movements from './Movements/Index.vue'
-
+import ActionV from './ActionV.vue';
+import GraphicV from './GraphicV.vue';
 
 export default {
     name: "HomeV",
-    components: { HeaderV, LayoutV, Resume, Movements},
+    components: { HeaderV, LayoutV, Resume, Movements, ActionV, GraphicV },
     data(){
-        return{
+      return{
+            amounts:[100,200,300,-600,-300,500],
             amount:null,
             movements: [
         {
