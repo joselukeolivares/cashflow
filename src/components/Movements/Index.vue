@@ -7,6 +7,7 @@
           :title="title"
           :description="description"
           :amount="amount"
+          @remove="remove"
           >
         </MovementV>
       </div>
@@ -14,7 +15,7 @@
 </template>
 
 <script setup>
-import { toRefs,defineProps } from 'vue';
+import { toRefs,defineProps,defineEmits } from 'vue';
 import MovementV from './MovementV.vue';
 const props=defineProps({
   movements:{
@@ -23,7 +24,13 @@ const props=defineProps({
   }
 })
 const {movements}=toRefs(props)
-console.log(movements)
+console.log(movements.value)
+const emit=defineEmits(["remove"])
+const remove=(id)=>{
+  console.log("removing element in process",id)
+  emit("remove",id)
+}
+
 </script>
 
 <style scoped>

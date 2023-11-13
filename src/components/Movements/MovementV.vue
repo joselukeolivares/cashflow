@@ -5,13 +5,13 @@
             <p>{{description}}</p>
         </div>
         <div class="action">
-            <img src="../../assets/trash-icon.svg"/>
+            <img src="../../assets/trash-icon.svg" @click="remove"/>
             <h3 :class="{'red':isNegative,'green':!isNegative}">{{ amount }}</h3>
         </div>
     </div>
 </template>
 <script setup>
- import {toRefs,defineProps,computed} from 'vue'
+ import {toRefs,defineProps,computed,defineEmits} from 'vue'
  const props=defineProps({
     id:{
         type:Number
@@ -28,6 +28,11 @@
  })
  const {id,title,description,amount}=toRefs(props)
  const isNegative=computed(()=>amount.value<0)
+ const emite=defineEmits(["remove"])
+ const remove=()=>{
+  console.log("MovementV",id.value)
+  emite("remove",toRefs(props))
+ }
 </script>
 <style scoped>
 .movement {
